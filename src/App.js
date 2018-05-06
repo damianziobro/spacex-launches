@@ -1,18 +1,24 @@
 import { hot } from 'react-hot-loader';
 import * as React from 'react';
 
-import Home from './view/Home';
-import Counter from './view/Counter';
+import LaunchDetails from './view/LaunchDetails/LaunchDetails';
 
 import './styles/theme.sass';
+
+import launch from './assets/sample_json_data/launch.json';
+import launchSite from './assets/sample_json_data/launch_site.json';
+import rocket from './assets/sample_json_data/rocket.json';
 
 class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
     return (
       <main>
-        <Home username="DaftCoder" />
-        <Counter from={170} to={190} />
+        <LaunchDetails
+          launch={launch}
+          launchSite={launchSite}
+          rocket={rocket}
+        />
       </main>
     );
   }
