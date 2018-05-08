@@ -1,7 +1,7 @@
 {
   "author": "DaftCode",
   "license": "MIT",
-  "name": "Space X Launches",
+  "name": "daftcode-react-starter",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

@@ -10,7 +10,6 @@ import launchSite from './assets/sample_json_data/launch_site.json';
 import rocket from './assets/sample_json_data/rocket.json';
 
 class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
-
   render() {
     return (
       <main>
@@ -21,7 +20,7 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
         />
       </main>
     );
-  }
-}
+  };
+};
 
 export default hot(module)(App);
