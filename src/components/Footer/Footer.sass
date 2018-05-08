@@ -1,0 +1,45 @@
+@import "~styles/variables"
+
+.footer
+    padding: 1em
+    background-color: $dark_grey
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    &__copyright
+        color: $brownish_grey
+        @include basic
+        text-transform: uppercase
+
+.links
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &__heading
+        padding: 0 .5em
+        color: $brownish_grey
+        border-right: 1px solid $brownish_grey
+        text-transform: uppercase
+        @include basic
+
+    &__list
+        padding: .5em
+        display: flex
+        justify-content: center
+        align-items: center
+
+
+    &__li
+        list-style-type: none
+        padding: .5em
+        text-transform: uppercase
+
+    &__link
+        color: $cool-gray
+        text-decoration: none
+        @include basic
+        
+    &__link:hover
+        text-decoration: underline
