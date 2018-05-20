@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { format } from 'date-fns';
 
 import LaunchDataSection from "../../components/LaunchDataSection/LaunchDataSection";
 
@@ -48,7 +49,7 @@ class LaunchDetails extends React.Component {
           <div className="launch-details__columns">
             <div className="launch-details__first-column">
               <span className="launch-details__start-date">
-                {launch.launch_date_local}
+                {format(launch.launch_date_local, 'DD MMMM YYYY')}
               </span>
               <h2 className="launch-details__rocket-name">
                 {`${launch.rocket.rocket_name} launch`}
