@@ -13,14 +13,16 @@ import rocket from './assets/sample_json_data/rocket.json';
 class App extends React.Component {
   render() {
     return (
-      <main>
-        <LaunchDetails
-          launch={launch}
-          launchSite={launchSite}
-          rocket={rocket}
-        />
-      </main>
-      <Footer />
+      <div>
+        <main>
+          <LaunchDetails
+            launch={launch}
+            launchSite={launchSite}
+            rocket={rocket}
+          />
+        </main>
+        <Footer />
+      </div>
     );
   };
 };
