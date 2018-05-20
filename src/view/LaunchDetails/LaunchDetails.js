@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 import LaunchDataSection from "../../components/LaunchDataSection/LaunchDataSection";
+import LaunchCountdown from "../../components/LaunchCountdown/LaunchCountdown";
 
 import logo from "../../assets/img/space_x_logo_bw_centered.png";
 import rocket from "../../assets/sample_json_data/rocket.json";
@@ -49,14 +50,15 @@ class LaunchDetails extends React.Component {
           <div className="launch-details__columns">
             <div className="launch-details__first-column">
               <span className="launch-details__start-date">
-                {format(launch.launch_date_local, 'DD MMMM YYYY')}
+                {format(launch.launch_date_local, "DD MMMM YYYY")}
               </span>
               <h2 className="launch-details__rocket-name">
                 {`${launch.rocket.rocket_name} launch`}
               </h2>
-              {/* countdown placeholder only for styling */}
               <span className="launch-details__countdown">
-                20 DAYS 11 HRS 34 MINS TO START
+                {/* second countdown only for testing */}
+                <LaunchCountdown time={new Date(launch.launch_date_utc)} />
+                <LaunchCountdown time={new Date("2018-05-25T20:14:00Z")} />
               </span>
               <img
                 className="launch-details__mission-patch"
