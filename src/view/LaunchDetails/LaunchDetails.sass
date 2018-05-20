@@ -3,7 +3,7 @@
 .launch-details
 
     &__header
-        padding: 1.5em
+        padding: 2em 4em
         background-color: $almost-black
         display: flex
         justify-content: center
@@ -12,16 +12,39 @@
     &__logo
         height: 35px
 
+    &__start-date
+        @include basic
+        color: $cool-gray
+
+    &__rocket-name
+        margin-bottom: 0
+        @include header_big
+        text-transform: uppercase
+
+    &__countdown
+        @include basic
+        text-transform: uppercase
+
+    &__mission-patch
+        display: block
+        padding: 5em
+        max-width: 300px
+
+
     &__columns
+        padding: 2em 4em
         display: flex
 
     &__first-column
+        padding: 2em
         width: 50%
     
     &__second-column
+        padding: 2em
         width: 50%
 
 .mission-links
+    padding: 2em 4em
     display: flex
     flex-direction: column
     justify-content: flex-end

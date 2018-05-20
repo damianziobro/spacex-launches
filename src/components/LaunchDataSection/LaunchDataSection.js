@@ -1,8 +1,10 @@
 import React from "react";
 
+import './LaunchDataSection.sass';
+
 function LaunchDataSection({ heading, items, description }) {
   return (
-    <section>
+    <section className="launch-data-section">
       <h3 className="launch-data-section__heading">{heading}</h3>
       {items ? (
         <ul className="launch-data-section__list">

@@ -47,20 +47,23 @@ class LaunchDetails extends React.Component {
         <section className="launch-details__main">
           <div className="launch-details__columns">
             <div className="launch-details__first-column">
-              <span className="launch-details__start_date">
+              <span className="launch-details__start-date">
                 {launch.launch_date_local}
               </span>
               <h2 className="launch-details__rocket-name">
-                {launch.rocket.rocket_name}
+                {`${launch.rocket.rocket_name} launch`}
               </h2>
-              <span className="launch-details__countdown" />
+              {/* countdown placeholder only for styling */}
+              <span className="launch-details__countdown">
+                20 DAYS 11 HRS 34 MINS TO START
+              </span>
               <img
                 className="launch-details__mission-patch"
                 src={launch.links.mission_patch_small}
                 alt="Mission patch"
               />
             </div>
-            <div className="launch-details__second-section">
+            <div className="launch-details__second-column">
               <LaunchDataSection
                 heading="Details"
                 description={launch.details}
