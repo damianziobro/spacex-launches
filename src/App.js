@@ -2,6 +2,7 @@ import { hot } from 'react-hot-loader';
 import * as React from 'react';
 
 import LaunchDetails from './view/LaunchDetails/LaunchDetails';
+import Footer from './components/Footer/Footer';
 
 import './styles/theme.sass';
 
@@ -9,7 +10,7 @@ import launch from './assets/sample_json_data/launch.json';
 import launchSite from './assets/sample_json_data/launch_site.json';
 import rocket from './assets/sample_json_data/rocket.json';
 
-class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class App extends React.Component {
   render() {
     return (
       <main>
@@ -19,6 +20,7 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
           rocket={rocket}
         />
       </main>
+      <Footer />
     );
   };
 };
