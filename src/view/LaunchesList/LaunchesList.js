@@ -7,30 +7,48 @@ import FilterButtons from "../../components/FilterButtons/FilterButtons";
 class LaunchesList extends Component {
   state = {
     allLaunches: null,
+    filteredLaunches: null,
+    loading: false,
+    error: false,
+    notFound: false
   };
+
+  handleFilterListClick = (event) => {
+    const query = event.target.id === 'all' ? 'all' : `?rocket_id=${event.target.id}`;
+    fetch(`https://api.spacexdata.com/v2/launches/${query}`)
+      .then(res => res.json())
+      .then(data => {
+          const notFound = data.length == 0 ? true : false;
+          console.log(data);
+          this.setState({ filteredLaunches: data, loading: false, error: false, notFound })
+    })
+      .catch(err => this.setState({ error: true, loading: false }));
+      this.setState({ loading: true });
+  }
 
   componentDidMount() {
     fetch("https://api.spacexdata.com/v2/launches/all")
       .then(res => res.json())
-      .then(data => this.setState({ allLaunches: data }))
-      .catch(err => console.error(err));
+      .then(data => this.setState({ allLaunches: data, loading: false, error: false }))
+      .catch(err => this.setState({ error: true, loading: false }));
+      this.setState({ loading: true });
   }
 
   render() {
-    const { allLaunches } = this.state;
+    const { allLaunches, filteredLaunches, notFound } = this.state;
     return (
       <div className="launches-list">
         <img src={logo} alt="SpaceX logo" />
         <p>Launches 2018</p>
         {allLaunches ? (
-          <FilterButtons allLaunches={allLaunches} />
+          <FilterButtons allLaunches={allLaunches} onFilterListClick={this.handleFilterListClick} />
         ) : (
           <div>Loading</div>
         )}
         <div>
-          {allLaunches ? allLaunches.map(launch => {
+        {notFound ? <span>Sorry, no launches found</span> : filteredLaunches ? filteredLaunches.map(launch => {
             return (
-              <div key={launch.flight_number}>
+               <div key={launch.flight_number}>
                 <span>{format(launch.launch_date_local, "DD MMMM YYYY")}</span>
                 {/* implement arrow in css */}
                 <span>___________________________________________</span>
