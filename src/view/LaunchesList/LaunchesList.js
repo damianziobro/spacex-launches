@@ -17,12 +17,13 @@ class LaunchesList extends Component {
 
   handleFilterListClick = event => {
     const query =
-      event.target.id === "allrockets" ? "all" : `?rocket_id=${event.target.id}`;
+      event.target.id === "allrockets"
+        ? "all"
+        : `?rocket_id=${event.target.id}`;
     fetch(`https://api.spacexdata.com/v2/launches/${query}`)
       .then(res => res.json())
       .then(data => {
         const notFound = data.length == 0 ? true : false;
-        console.log(data);
         this.setState({
           filteredLaunches: data,
           loading: false,
@@ -72,7 +73,11 @@ class LaunchesList extends Component {
           ) : filteredLaunches ? (
             filteredLaunches.map(launch => {
               return (
-                <div key={launch.flight_number}>
+                <div
+                  key={launch.flight_number}
+                  id={launch.flight_number}
+                  onClick={this.props.onGoToDetailsClick}
+                >
                   <span>
                     {format(launch.launch_date_local, "DD MMMM YYYY")}
                   </span>

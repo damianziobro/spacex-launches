@@ -15,7 +15,11 @@ import "./LaunchDetails.sass";
 class LaunchDetails extends React.Component {
   static propTypes = {};
 
-  state = {};
+  state = {
+    launch: null,
+    loading: false,
+    error: false
+  };
 
   rocketDataItems = [
     { label: "Name", data: rocket.name },
@@ -39,6 +43,20 @@ class LaunchDetails extends React.Component {
     { label: "Name", data: launchSite.full_name },
     { label: "Location", data: launchSite.location.name },
   ];
+
+  componentDidMount() {
+    fetch(`https://api.spacexdata.com/v2/launches?flight_number=${this.props.id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          launch: data,
+          loading: false,
+          error: false
+        });
+      })
+      .catch(err => this.setState({ error: true, loading: false }));
+    this.setState({ loading: true });
+  }
 
   render() {
     return (

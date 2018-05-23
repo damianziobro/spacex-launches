@@ -18,7 +18,7 @@ class App extends React.Component {
   };
 
   handleGoToDetailsClick = (event) => {
-    this.setState({ activeView: "details", launchDetailsId: event.target.id });
+    this.setState({ activeView: "details", launchDetailsId: event.currentTarget.id });
   }
 
   handleGoToListClick = () => {
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   getActiveView = () => {
-    const { activeView } = this.state;
+    const { activeView, launchDetailsId } = this.state;
 
     switch (activeView) {
       case "list":
@@ -39,9 +39,7 @@ class App extends React.Component {
       case "details":
         return (
           <LaunchDetails
-            launch={launch}
-            launchSite={launchSite}
-            rocket={rocket}
+            id={launchDetailsId}
             onGoToListClick={this.handleGoToListBackClick}
           />
         );
