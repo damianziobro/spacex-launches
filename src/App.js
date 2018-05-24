@@ -40,7 +40,7 @@ class App extends React.Component {
         return (
           <LaunchDetails
             id={launchDetailsId}
-            onGoToListClick={this.handleGoToListBackClick}
+            onGoToListClick={this.handleGoToListClick}
           />
         );
 

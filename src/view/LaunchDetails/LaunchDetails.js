@@ -62,6 +62,7 @@ class LaunchDetails extends React.Component {
     return (
       <div className="launch-details">
         <header className="launch-details__header">
+          <button onClick={this.props.onGoToListClick}>Go back</button>
           <img className="launch-details__logo" src={logo} alt="SpaceX logo" />
         </header>
         <section className="launch-details__main">
