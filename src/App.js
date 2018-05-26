@@ -7,10 +7,6 @@ import Footer from "./components/Footer/Footer";
 
 import "./styles/theme.sass";
 
-import launch from "./assets/sample_json_data/launch.json";
-import launchSite from "./assets/sample_json_data/launch_site.json";
-import rocket from "./assets/sample_json_data/rocket.json";
-
 class App extends React.Component {
   state = {
     activeView: "list",
