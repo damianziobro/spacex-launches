@@ -10,11 +10,19 @@ import "./styles/theme.sass";
 class App extends React.Component {
   state = {
     activeView: "list",
-    launchDetailsId: null
+    flightNumber: null,
+    rocket: null,
+    launchpad: null
   };
 
   handleGoToDetailsClick = (event) => {
-    this.setState({ activeView: "details", launchDetailsId: event.currentTarget.id });
+    const { flightnumber, rocket, launchpad } = event.currentTarget;
+    this.setState({
+      activeView: "details",
+      flightnumber,
+      rocket,
+      launchpad
+    });
   }
 
   handleGoToListClick = () => {
@@ -22,7 +30,7 @@ class App extends React.Component {
   }
 
   getActiveView = () => {
-    const { activeView, launchDetailsId } = this.state;
+    const { activeView, flightnumber, rocket, launchpad } = this.state;
 
     switch (activeView) {
       case "list":
@@ -35,7 +43,9 @@ class App extends React.Component {
       case "details":
         return (
           <LaunchDetails
-            id={launchDetailsId}
+            flightnumber={flightnumber}
+            rocket={rocket}
+            launchpad={"vafb_slc_4e"}
             onGoToListClick={this.handleGoToListClick}
           />
         );

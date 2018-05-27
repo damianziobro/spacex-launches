@@ -72,10 +72,13 @@ class LaunchesList extends Component {
             <span>Sorry, no launches found</span>
           ) : filteredLaunches ? (
             filteredLaunches.map(launch => {
+
               return (
                 <div
                   key={launch.flight_number}
-                  id={launch.flight_number}
+                  flightnumber={launch.flight_number}
+                  rocket={launch.rocket_name}
+                  launchpad={launch.launch_site.site_id}
                   onClick={this.props.onGoToDetailsClick}
                 >
                   <span>

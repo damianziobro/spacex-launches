@@ -1,61 +1,85 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { format } from "date-fns";
+import React from "react"
+import PropTypes from "prop-types"
+import { format } from "date-fns"
 
-import LaunchDataSection from "../../components/LaunchDataSection/LaunchDataSection";
-import LaunchCountdown from "../../components/LaunchCountdown/LaunchCountdown";
+import LaunchDataSection from "../../components/LaunchDataSection/LaunchDataSection"
+import LaunchCountdown from "../../components/LaunchCountdown/LaunchCountdown"
 
-import logo from "../../assets/img/space_x_logo_bw_centered.png";
-import rocket from "../../assets/sample_json_data/rocket.json";
-import launchSite from "../../assets/sample_json_data/launch_site.json";
-import launch from "../../assets/sample_json_data/launch.json";
+import logo from "../../assets/img/space_x_logo_bw_centered.png"
+import rocket from "../../assets/sample_json_data/rocket.json"
+import launchSite from "../../assets/sample_json_data/launch_site.json"
+import launch from "../../assets/sample_json_data/launch.json"
 
-import "./LaunchDetails.sass";
+import "./LaunchDetails.sass"
 
 class LaunchDetails extends React.Component {
-  static propTypes = {};
+  static propTypes = {}
 
   state = {
-    launch: null,
+    launchData: null,
+    rocketData: null,
+    launchpadData: null,
     loading: false,
-    error: false
-  };
+    error: false,
+  }
 
-  rocketDataItems = [
-    { label: "Name", data: rocket.name },
-    { label: "Company", data: rocket.company },
-    {
-      label: "Height",
-      data: `${rocket.height.meters}M / ${rocket.height.feet}FT`,
-    },
-    {
-      label: "Diameter",
-      data: `${rocket.diameter.meters}M / ${rocket.diameter.feet}FT`,
-    },
-    { label: "Mass", data: `${rocket.mass.kg}KG / ${rocket.mass.lb}LB` },
-    { label: "First flight", data: rocket.first_flight },
-    { label: "Country", data: rocket.country },
-    { label: "Success rate", data: `${rocket.success_rate_pct}%` },
-    { label: "Cost per launch", data: `$${rocket.cost_per_launch}` },
-  ];
+  extractRocketData = (rocket) => {
+    return [
+        { label: "Name", data: rocket.name },
+        { label: "Company", data: rocket.company },
+        {
+          label: "Height",
+          data: `${rocket.height.meters}M / ${rocket.height.feet}FT`,
+        },
+        {
+          label: "Diameter",
+          data: `${rocket.diameter.meters}M / ${rocket.diameter.feet}FT`,
+        },
+        { label: "Mass", data: `${rocket.mass.kg}KG / ${rocket.mass.lb}LB` },
+        { label: "First flight", data: rocket.first_flight },
+        { label: "Country", data: rocket.country },
+        { label: "Success rate", data: `${rocket.success_rate_pct}%` },
+        { label: "Cost per launch", data: `$${rocket.cost_per_launch}` },
+      ]
+  }
 
-  launchpadDataItems = [
-    { label: "Name", data: launchSite.full_name },
-    { label: "Location", data: launchSite.location.name },
-  ];
+  extractLaunchpadData = launchpad => {
+    return [
+      { label: "Name", data: launchpad.full_name },
+      { label: "Location", data: launchpad.location.name },
+    ]
+  }
 
   componentDidMount() {
-    fetch(`https://api.spacexdata.com/v2/launches?flight_number=${this.props.id}`)
-      .then(res => res.json())
+    const baseUrl = "https://api.spacexdata.com/v2/";
+    const { flightnumber, rocket, launchpad } = this.props;
+
+    Promise.all([
+      fetch(`${baseUrl}launches?flight_number=${this.props.flightnumber}`),
+      fetch(`${baseUrl}rockets/falconheavy`),
+      fetch(`${baseUrl}launchpads/${this.props.launchpad}`)
+    ])
+      .then(responses =>
+        Promise.all(responses.map(response => response.json()))
+      )
       .then(data => {
         this.setState({
-          launch: data,
+          launchData: data[0],
+          rocketData: data[1],
+          launchpadData: data[2],
           loading: false,
-          error: false
-        });
+          error: false,
+        })
       })
-      .catch(err => this.setState({ error: true, loading: false }));
-    this.setState({ loading: true });
+      .catch(error =>
+        this.setState({
+          error: true,
+          loading: false,
+        })
+      )
+    this.setState({
+      loading: true,
+    })
   }
 
   render() {
@@ -92,12 +116,12 @@ class LaunchDetails extends React.Component {
               />
               <LaunchDataSection
                 heading="Rocket"
-                items={this.rocketDataItems}
+                items={this.state.rocketData ? this.extractRocketData(this.state.rocketData) : null}
                 description={rocket.description}
               />
               <LaunchDataSection
                 heading="Launch Pad"
-                items={this.launchpadDataItems}
+                items={this.state.launchpadData ? this.extractLaunchpadData(this.state.launchpadData) : null}
                 description={launchSite.details}
               />
             </div>
@@ -136,8 +160,8 @@ class LaunchDetails extends React.Component {
           </section>
         </section>
       </div>
-    );
+    )
   }
 }
 
-export default LaunchDetails;
+export default LaunchDetails
