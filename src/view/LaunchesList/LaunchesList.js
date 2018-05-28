@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { format } from "date-fns";
+import React, { Component } from "react"
+import { format } from "date-fns"
 
-import logo from "../../assets/img/space_x_logo_bw_centered.png";
+import logo from "../../assets/img/space_x_logo_bw_centered.png"
 
-import FilterButtons from "../../components/FilterButtons/FilterButtons";
-import Loading from "../../components/UI/Loading/Loading";
+import FilterButtons from "../../components/FilterButtons/FilterButtons"
+import Loading from "../../components/UI/Loading/Loading"
 
 class LaunchesList extends Component {
   state = {
@@ -13,36 +13,52 @@ class LaunchesList extends Component {
     loading: false,
     error: false,
     notFound: false,
-  };
+  }
 
   handleFilterListClick = event => {
-    const query =
-      event.target.id === "allrockets"
-        ? "all"
-        : `?rocket_id=${event.target.id}`;
+    const { id } = event.target
+    const query = id === "allrockets" ? "all" : `?rocket_id=${id}`
     fetch(`https://api.spacexdata.com/v2/launches/${query}`)
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
-        const notFound = data.length == 0 ? true : false;
+        const notFound = data.length == 0 ? true : false
         this.setState({
           filteredLaunches: data,
           loading: false,
           error: false,
           notFound,
-        });
+        })
       })
-      .catch(err => this.setState({ error: true, loading: false }));
-    this.setState({ loading: true });
-  };
+      .catch(error =>
+        this.setState({
+          error: true,
+          loading: false,
+        })
+      )
+    this.setState({
+      loading: true,
+    })
+  }
 
   componentDidMount() {
     fetch("https://api.spacexdata.com/v2/launches/all")
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data =>
-        this.setState({ allLaunches: data, loading: false, error: false })
+        this.setState({
+          allLaunches: data,
+          loading: false,
+          error: false,
+        })
       )
-      .catch(err => this.setState({ error: true, loading: false }));
-    this.setState({ loading: true });
+      .catch(error =>
+        this.setState({
+          error: true,
+          loading: false,
+        })
+      )
+    this.setState({
+      loading: true,
+    })
   }
 
   render() {
@@ -52,7 +68,7 @@ class LaunchesList extends Component {
       notFound,
       loading,
       error,
-    } = this.state;
+    } = this.state
     return (
       <div className="launches-list">
         <img src={logo} alt="SpaceX logo" />
@@ -72,14 +88,10 @@ class LaunchesList extends Component {
             <span>Sorry, no launches found</span>
           ) : filteredLaunches ? (
             filteredLaunches.map(launch => {
-
               return (
                 <div
                   key={launch.flight_number}
-                  flightnumber={launch.flight_number}
-                  rocket={launch.rocket_name}
-                  launchpad={launch.launch_site.site_id}
-                  onClick={this.props.onGoToDetailsClick}
+                  onClick={event => this.props.onGoToDetailsClick(event, launch.flight_number, launch.rocket.rocket_name.replace(/\s/g, '').toLowerCase(), launch.launch_site.site_id)}
                 >
                   <span>
                     {format(launch.launch_date_local, "DD MMMM YYYY")}
@@ -99,13 +111,13 @@ class LaunchesList extends Component {
                     </li>
                   </ul>
                 </div>
-              );
+              )
             })
           ) : null}
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default LaunchesList;
+export default LaunchesList
