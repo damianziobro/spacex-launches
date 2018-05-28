@@ -6,6 +6,8 @@ import logo from "../../assets/img/space_x_logo_bw_centered.png"
 import FilterButtons from "../../components/FilterButtons/FilterButtons"
 import Loading from "../../components/UI/Loading/Loading"
 
+import "./LaunchesList.sass"
+
 class LaunchesList extends Component {
   state = {
     allLaunches: null,
@@ -71,16 +73,18 @@ class LaunchesList extends Component {
     } = this.state
     return (
       <div className="launches-list">
-        <img src={logo} alt="SpaceX logo" />
-        <p>Launches 2018</p>
-        {allLaunches ? (
-          <FilterButtons
-            allLaunches={allLaunches}
-            onFilterListClick={this.handleFilterListClick}
-          />
-        ) : (
-          <Loading />
-        )}
+        <div className="launches-list__top">
+          <img className="launches-list__logo" src={logo} alt="SpaceX logo" />
+          <p className="launches-list__text">Launches 2018</p>
+          {allLaunches ? (
+            <FilterButtons
+              allLaunches={allLaunches}
+              onFilterListClick={this.handleFilterListClick}
+            />
+          ) : (
+            <Loading />
+          )}
+        </div>
         <div>
           {loading ? <Loading /> : null}
           {error ? <div>Error</div> : null}

@@ -1,0 +1,27 @@
+@import "~styles/variables"
+
+.launches-list
+    display: flex
+    align-items: center
+    flex-direction: column
+    background-color: $almost-black
+    min-height: 100vh
+
+    &__top
+        display: flex
+        align-items: center
+        justify-content: flex-end
+        flex-direction: column
+        height: 50vh
+        background: url('../../assets/img/moon.png') no-repeat
+        background-size: 80%
+        background-position: bottom center
+
+    &__text
+        text-transform: uppercase
+        @include header_sml
+        letter-spacing: .8em
+        color: $cool-gray
+
+    &__logo
+        width: 50%

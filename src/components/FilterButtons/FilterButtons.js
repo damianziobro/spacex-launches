@@ -20,7 +20,11 @@ function FilterButtons({ allLaunches, onFilterListClick }) {
     );
   });
 
-  return filterButtons;
+  return (
+    <div className="filter_buttons">
+      {filterButtons}
+    </div>
+  );
 }
 
 export default FilterButtons;
