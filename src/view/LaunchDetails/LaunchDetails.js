@@ -88,7 +88,7 @@ class LaunchDetails extends React.Component {
       return (
         <div className="launch-details">
           <header className="launch-details__header">
-            <button onClick={onGoToListClick}>Go back</button>
+            <button className="launch-details__go-back-btn" onClick={onGoToListClick}>Go back</button>
             <img
               className="launch-details__logo"
               src={logo}
