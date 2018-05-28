@@ -87,46 +87,50 @@ class LaunchesList extends Component {
         </div>
         <div>
           {loading ? <Loading /> : null}
-          {error ? <div>Error</div> : null}
-          {notFound ? (
-            <span>Sorry, no launches found</span>
-          ) : filteredLaunches ? (
-            filteredLaunches.map(launch => {
-              return (
-                <div
-                  key={launch.flight_number}
-                  onClick={event =>
-                    this.props.onGoToDetailsClick(
-                      event,
-                      launch.flight_number,
-                      launch.rocket.rocket_name
-                        .replace(/\s/g, "")
-                        .toLowerCase(),
-                      launch.launch_site.site_id
-                    )
-                  }
-                >
-                  <span>
-                    {format(launch.launch_date_local, "DD MMMM YYYY")}
-                  </span>
-                  {/* implement arrow in css */}
-                  <span>___________________________________________</span>
-                  <ul>
-                    <li className="">
-                      <span className="">Rocket</span>
-                      <span className="">{launch.rocket.rocket_name}</span>
-                    </li>
-                    <li className="">
-                      <span className="">Launch Site</span>
-                      <span className="launch-data-section__data">
-                        {launch.launch_site.site_name_long}
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              )
-            })
-          ) : null}
+          {error ? <div className="launches-list__error">Error</div> : null}
+          <div className="launches-list__launches">
+            {notFound ? (
+              <span className="launches-list__error">Sorry, no launches found</span>
+            ) : filteredLaunches ? (
+              filteredLaunches.map(launch => {
+                return (
+                  <div
+                    className="launch"
+                    key={launch.flight_number}
+                    onClick={event =>
+                      this.props.onGoToDetailsClick(
+                        event,
+                        launch.flight_number,
+                        launch.rocket.rocket_name
+                          .replace(/\s/g, "")
+                          .toLowerCase(),
+                        launch.launch_site.site_id
+                      )
+                    }
+                  >
+                    <span className="launch__date">
+                      {format(launch.launch_date_local, "DD MMMM YYYY")}
+                    </span>
+                    <div className="launch__arrow"></div>
+                    <ul className="launch__list">
+                      <li className="launch__list-item">
+                        <span className="launch__name">Rocket: </span>
+                        <span className="launch__data">
+                          {launch.rocket.rocket_name}
+                        </span>
+                      </li>
+                      <li className="launch__list-item">
+                        <span className="launch__name">Launch Site: </span>
+                        <span className="launch__data">
+                          {launch.launch_site.site_name_long}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                )
+              })
+            ) : null}
+          </div>
         </div>
       </div>
     )
