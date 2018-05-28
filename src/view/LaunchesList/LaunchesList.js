@@ -91,7 +91,16 @@ class LaunchesList extends Component {
               return (
                 <div
                   key={launch.flight_number}
-                  onClick={event => this.props.onGoToDetailsClick(event, launch.flight_number, launch.rocket.rocket_name.replace(/\s/g, '').toLowerCase(), launch.launch_site.site_id)}
+                  onClick={event =>
+                    this.props.onGoToDetailsClick(
+                      event,
+                      launch.flight_number,
+                      launch.rocket.rocket_name
+                        .replace(/\s/g, "")
+                        .toLowerCase(),
+                      launch.launch_site.site_id
+                    )
+                  }
                 >
                   <span>
                     {format(launch.launch_date_local, "DD MMMM YYYY")}

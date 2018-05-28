@@ -55,7 +55,7 @@ class LaunchDetails extends React.Component {
     Promise.all([
       fetch(`${baseUrl}/launches/all?flight_number=${flightnumber}`),
       fetch(`${baseUrl}/rockets/${rocket}`),
-      fetch(`${baseUrl}/launchpads/${launchpad}`),
+      fetch(`${baseUrl}/launchpads/${launchpad}`)
     ])
       .then(responses =>
         Promise.all(responses.map(response => response.json()))
