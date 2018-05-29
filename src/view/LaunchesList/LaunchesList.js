@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { format } from "date-fns"
 
 import logo from "../../assets/img/space_x_logo_bw_centered.png"
+import arrow from '../../assets/img/arrow_pointer.png'
 
 import FilterButtons from "../../components/FilterButtons/FilterButtons"
 import Loading from "../../components/UI/Loading/Loading"
@@ -111,19 +112,21 @@ class LaunchesList extends Component {
                     <span className="launch__date">
                       {format(launch.launch_date_local, "DD MMMM YYYY")}
                     </span>
-                    <div className="launch__arrow"></div>
+                    <div className="launch__arrow">
+                      <img className="launch__arrow-icon" src={arrow} />
+                    </div>
                     <ul className="launch__list">
                       <li className="launch__list-item">
-                        <span className="launch__name">Rocket: </span>
-                        <span className="launch__data">
+                        <div className="launch__name">Rocket: </div>
+                        <div className="launch__data">
                           {launch.rocket.rocket_name}
-                        </span>
+                        </div>
                       </li>
                       <li className="launch__list-item">
-                        <span className="launch__name">Launch Site: </span>
-                        <span className="launch__data">
+                        <div className="launch__name">Launch Site: </div>
+                        <div className="launch__data">
                           {launch.launch_site.site_name_long}
-                        </span>
+                        </div>
                       </li>
                     </ul>
                   </div>
