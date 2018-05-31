@@ -1,35 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class LaunchCountdown extends Component {
-
   state = {
     counter: 0,
-    intervalId: null
+    intervalId: null,
   };
 
   counterStart = () => {
-    let intervalId = setInterval(event => this.setState({ counter: this.state.counter - 1000}), 1000);
+    let intervalId = setInterval(
+      event => this.setState({ counter: this.state.counter - 1000 }),
+      1000
+    );
     this.setState({ intervalId });
-  }
+  };
 
   counterStop = () => {
     const { counter, intervalId } = this.state;
     if (counter <= 0) clearInterval(intervalId);
-  }
+  };
 
   componentDidMount() {
-      const milisecondsToStart = this.props.time - new Date();
-      const { counter } = this.state;
-      if (milisecondsToStart > 0) {
-          this.setState({counter : milisecondsToStart});
-          this.counterStart();
-      } else {
-          this.counterStop();
-      }
+    const milisecondsToStart = this.props.time - new Date();
+    const { counter } = this.state;
+    if (milisecondsToStart > 0) {
+      this.setState({ counter: milisecondsToStart });
+      this.counterStart();
+    } else {
+      this.counterStop();
+    }
   }
 
   componentWillUnmount() {
-    const { intervalId } = this.state;  
+    const { intervalId } = this.state;
     clearInterval(intervalId);
   }
 
@@ -51,7 +53,9 @@ class LaunchCountdown extends Component {
 
     this.counterStop();
 
-    return counter ? <span> {`${days} days ${hours} hrs ${minutes} mins to start`}</span> : null
+    return counter ? (
+      <span> {`${days} days ${hours} hrs ${minutes} mins to start`}</span>
+    ) : null;
   }
 }
 

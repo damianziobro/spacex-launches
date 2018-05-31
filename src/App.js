@@ -12,7 +12,7 @@ class App extends React.Component {
     activeView: "list",
     flightNumber: null,
     rocket: null,
-    launchpad: null
+    launchpad: null,
   };
 
   handleGoToDetailsClick = (event, flightnumber, rocket, launchpad) => {
@@ -20,13 +20,13 @@ class App extends React.Component {
       activeView: "details",
       flightNumber: flightnumber,
       rocket,
-      launchpad
+      launchpad,
     });
-  }
+  };
 
   handleGoToListClick = () => {
     this.setState({ activeView: "list" });
-  }
+  };
 
   getActiveView = () => {
     const { activeView, flightNumber, rocket, launchpad } = this.state;
@@ -34,9 +34,7 @@ class App extends React.Component {
     switch (activeView) {
       case "list":
         return (
-          <LaunchesList
-            onGoToDetailsClick={this.handleGoToDetailsClick}
-          />
+          <LaunchesList onGoToDetailsClick={this.handleGoToDetailsClick} />
         );
 
       case "details":

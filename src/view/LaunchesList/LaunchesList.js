@@ -1,13 +1,13 @@
-import React, { Component } from "react"
-import { format } from "date-fns"
+import React, { Component } from "react";
+import { format } from "date-fns";
 
-import logo from "../../assets/img/space_x_logo_bw_centered.png"
-import arrow from '../../assets/img/arrow_pointer.png'
+import logo from "../../assets/img/space_x_logo_bw_centered.png";
+import arrow from "../../assets/img/arrow_pointer.png";
 
-import FilterButtons from "../../components/FilterButtons/FilterButtons"
-import Loading from "../../components/UI/Loading/Loading"
+import FilterButtons from "../../components/FilterButtons/FilterButtons";
+import Loading from "../../components/UI/Loading/Loading";
 
-import "./LaunchesList.sass"
+import "./LaunchesList.sass";
 
 class LaunchesList extends Component {
   state = {
@@ -16,32 +16,32 @@ class LaunchesList extends Component {
     loading: false,
     error: false,
     notFound: false,
-  }
+  };
 
   handleFilterListClick = event => {
-    const { id } = event.target
-    const query = id === "allrockets" ? "all" : `?rocket_id=${id}`
+    const { id } = event.target;
+    const query = id === "allrockets" ? "all" : `?rocket_id=${id}`;
     fetch(`https://api.spacexdata.com/v2/launches/${query}`)
       .then(response => response.json())
       .then(data => {
-        const notFound = data.length == 0 ? true : false
+        const notFound = data.length == 0 ? true : false;
         this.setState({
           filteredLaunches: data,
           loading: false,
           error: false,
           notFound,
-        })
+        });
       })
       .catch(error =>
         this.setState({
           error: true,
           loading: false,
         })
-      )
+      );
     this.setState({
       loading: true,
-    })
-  }
+    });
+  };
 
   componentDidMount() {
     fetch("https://api.spacexdata.com/v2/launches/all")
@@ -58,10 +58,10 @@ class LaunchesList extends Component {
           error: true,
           loading: false,
         })
-      )
+      );
     this.setState({
       loading: true,
-    })
+    });
   }
 
   render() {
@@ -71,7 +71,7 @@ class LaunchesList extends Component {
       notFound,
       loading,
       error,
-    } = this.state
+    } = this.state;
     return (
       <div className="launches-list">
         <div className="launches-list__top">
@@ -91,7 +91,9 @@ class LaunchesList extends Component {
           {error ? <div className="launches-list__error">Error</div> : null}
           <div className="launches-list__launches">
             {notFound ? (
-              <span className="launches-list__error">Sorry, no launches found</span>
+              <span className="launches-list__error">
+                Sorry, no launches found
+              </span>
             ) : filteredLaunches ? (
               filteredLaunches.map(launch => {
                 return (
@@ -130,14 +132,14 @@ class LaunchesList extends Component {
                       </li>
                     </ul>
                   </div>
-                )
+                );
               })
             ) : null}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default LaunchesList
+export default LaunchesList;

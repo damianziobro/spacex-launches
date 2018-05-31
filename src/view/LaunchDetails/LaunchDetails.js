@@ -1,25 +1,22 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { format } from "date-fns"
+import React, { Component } from "react";
+import { format } from "date-fns";
 
-import LaunchDataSection from "../../components/LaunchDataSection/LaunchDataSection"
-import LaunchCountdown from "../../components/LaunchCountdown/LaunchCountdown"
-import Loading from "../../components/UI/Loading/Loading"
+import LaunchDataSection from "../../components/LaunchDataSection/LaunchDataSection";
+import LaunchCountdown from "../../components/LaunchCountdown/LaunchCountdown";
+import Loading from "../../components/UI/Loading/Loading";
 
-import logo from "../../assets/img/space_x_logo_bw_centered.png"
+import logo from "../../assets/img/space_x_logo_bw_centered.png";
 
-import "./LaunchDetails.sass"
+import "./LaunchDetails.sass";
 
-class LaunchDetails extends React.Component {
-  static propTypes = {}
-
+class LaunchDetails extends Component {
   state = {
     launchData: null,
     rocketData: null,
     launchpadData: null,
     loading: false,
     error: false,
-  }
+  };
 
   extractRocketData = rocket => {
     return [
@@ -38,24 +35,24 @@ class LaunchDetails extends React.Component {
       { label: "Country", data: rocket.country },
       { label: "Success rate", data: `${rocket.success_rate_pct}%` },
       { label: "Cost per launch", data: `$${rocket.cost_per_launch}` },
-    ]
-  }
+    ];
+  };
 
   extractLaunchpadData = launchpad => {
     return [
       { label: "Name", data: launchpad.full_name },
       { label: "Location", data: launchpad.location.name },
-    ]
-  }
+    ];
+  };
 
   componentDidMount() {
-    const baseUrl = "https://api.spacexdata.com/v2"
-    const { flightnumber, rocket, launchpad } = this.props
+    const baseUrl = "https://api.spacexdata.com/v2";
+    const { flightnumber, rocket, launchpad } = this.props;
 
     Promise.all([
       fetch(`${baseUrl}/launches/all?flight_number=${flightnumber}`),
       fetch(`${baseUrl}/rockets/${rocket}`),
-      fetch(`${baseUrl}/launchpads/${launchpad}`)
+      fetch(`${baseUrl}/launchpads/${launchpad}`),
     ])
       .then(responses =>
         Promise.all(responses.map(response => response.json()))
@@ -67,28 +64,33 @@ class LaunchDetails extends React.Component {
           launchpadData: data[2],
           loading: false,
           error: false,
-        })
+        });
       })
       .catch(error =>
         this.setState({
           error: true,
           loading: false,
         })
-      )
+      );
     this.setState({
       loading: true,
-    })
+    });
   }
 
   render() {
-    const { launchData, rocketData, launchpadData } = this.state
-    const { onGoToListClick } = this.props
+    const { launchData, rocketData, launchpadData } = this.state;
+    const { onGoToListClick } = this.props;
 
     if (launchData && rocketData && launchpadData) {
       return (
         <div className="launch-details">
           <header className="launch-details__header">
-            <button className="launch-details__go-back-btn" onClick={onGoToListClick}>Go back</button>
+            <button
+              className="launch-details__go-back-btn"
+              onClick={onGoToListClick}
+            >
+              Go back
+            </button>
             <img
               className="launch-details__logo"
               src={logo}
@@ -166,10 +168,10 @@ class LaunchDetails extends React.Component {
             </section>
           </section>
         </div>
-      )
+      );
     }
-    return <Loading />
+    return <Loading />;
   }
 }
 
-export default LaunchDetails
+export default LaunchDetails;
