@@ -6,6 +6,7 @@ import LaunchCountdown from "../../components/LaunchCountdown/LaunchCountdown";
 import Loading from "../../components/UI/Loading/Loading";
 
 import logo from "../../assets/img/space_x_logo_bw_centered.png";
+import { baseURL } from '../../utils.js';
 
 import "./LaunchDetails.sass";
 
@@ -46,13 +47,12 @@ class LaunchDetails extends Component {
   };
 
   componentDidMount() {
-    const baseUrl = "https://api.spacexdata.com/v2";
     const { flightnumber, rocket, launchpad } = this.props;
 
     Promise.all([
-      fetch(`${baseUrl}/launches/all?flight_number=${flightnumber}`),
-      fetch(`${baseUrl}/rockets/${rocket}`),
-      fetch(`${baseUrl}/launchpads/${launchpad}`),
+      fetch(`${baseURL}/launches/all?flight_number=${flightnumber}`),
+      fetch(`${baseURL}/rockets/${rocket}`),
+      fetch(`${baseURL}/launchpads/${launchpad}`),
     ])
       .then(responses =>
         Promise.all(responses.map(response => response.json()))

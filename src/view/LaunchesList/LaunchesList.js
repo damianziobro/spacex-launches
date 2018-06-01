@@ -3,6 +3,7 @@ import { format } from "date-fns";
 
 import logo from "../../assets/img/space_x_logo_bw_centered.png";
 import arrow from "../../assets/img/arrow_pointer.png";
+import { baseURL } from '../../utils.js';
 
 import FilterButtons from "../../components/FilterButtons/FilterButtons";
 import Loading from "../../components/UI/Loading/Loading";
@@ -21,7 +22,7 @@ class LaunchesList extends Component {
   handleFilterListClick = event => {
     const { id } = event.target;
     const query = id === "allrockets" ? "all" : `?rocket_id=${id}`;
-    fetch(`https://api.spacexdata.com/v2/launches/${query}`)
+    fetch(`${baseURL}/launches/${query}`)
       .then(response => response.json())
       .then(data => {
         const notFound = data.length == 0 ? true : false;
@@ -44,7 +45,7 @@ class LaunchesList extends Component {
   };
 
   componentDidMount() {
-    fetch("https://api.spacexdata.com/v2/launches/all")
+    fetch(`${baseURL}/launches/all`)
       .then(response => response.json())
       .then(data =>
         this.setState({
