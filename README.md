@@ -1,4 +1,4 @@
-# ⚛ SpaceX Launches
+# SpaceX Launches
 
   React app which I created during the Frontend Level Up by Daftcode.
   The application allows to view launches of SpaceX rockets.
