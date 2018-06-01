@@ -1,68 +1,43 @@
-# ⚛ daftcode-react-starter
+# ⚛ SpaceX Launches
 
-React boilerplate for everyone 
+  React app which I created during the Frontend Level Up by Daftcode.
+  The application allows to view launches of SpaceX rockets.
 
-## 🕹 Features
-* [React (v16.3)](https://reactjs.org) - a JavaScript library for building user interfaces
-* [Babel](https://babeljs.io) - a JavaScript compiler
-* [Webpack (v4.5)](https://webpack.js.org) with plugins - a module bundler
-* [PostCSS](https://github.com/postcss/postcss), [Sass](https://sass-lang.com) - add a bit of style to your website
-* [React Hot Loader (v4)](https://github.com/gaearon/react-hot-loader) Tweak React components in real time
-* Linters + [Prettier](https://prettier.io)
-Tweak React components in real time ⚛️⚡️
+## Installation
 
-## 🔧 Installation
-
-Clone repository to your local workspace:
 ```bash
-git clone https://github.com/mkaczkowski/daftcode-react-starter.git
+git clone git@github.com:damianziobro/spacex-launches.git
 ```
 
-Install project dependencies using npm or yarn:
-
 ```bash
-cd daftcode-react-starter
+cd spacex-launches
 npm install
 ```
 
-## 🎮 Development
-
-Start developing your own website:
+## Development
 
 ```bash
 npm run start
 ```
 
-Open in your browser:
-
 ```bash
 http://localhost:3000
 ```
 
-## 👌 Production
-
-Production build of the website:
+## Production
 
 ```bash
 npm build
 ```
 
-Serve build files on your local server:
-
 ```bash
 npm serve
 ```
-
-Open in your browser:
 
 ```bash
 http://localhost:5000
 ```
 
-## 📜 License
+## Boilerplate
 
-MIT
-
-## 👨 Author
-
-Mariusz Kaczkowski from [DaftCode](http://daftcode.pl)
+The application is based on boilerplate https://github.com/mkaczkowski/daftcode-react-starter created by Mariusz Kaczkowski from [DaftCode](http://daftcode.pl)
