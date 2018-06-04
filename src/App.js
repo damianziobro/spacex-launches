@@ -1,5 +1,4 @@
-import { hot } from "react-hot-loader";
-import * as React from "react";
+import React, { Component } from "react";
 
 import LaunchDetails from "./view/LaunchDetails/LaunchDetails";
 import LaunchesList from "./view/LaunchesList/LaunchesList";
@@ -7,7 +6,7 @@ import Footer from "./components/Footer/Footer";
 
 import "./styles/theme.sass";
 
-class App extends React.Component {
+class App extends Component {
   state = {
     activeView: "list",
     flightNumber: null,
@@ -62,4 +61,4 @@ class App extends React.Component {
   }
 }
 
-export default hot(module)(App);
+export default App;
