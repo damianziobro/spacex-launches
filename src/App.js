@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import LaunchDetails from "./view/LaunchDetails/LaunchDetails";
-import LaunchesList from "./view/LaunchesList/LaunchesList";
+import LaunchDetailsContainer from "./containers/LaunchDetailsContainer";
+import LaunchesListContainer from "./containers/LaunchesListContainer";
 import Footer from "./components/Footer/Footer";
 
 import "./styles/theme.sass";
@@ -33,12 +33,12 @@ class App extends Component {
     switch (activeView) {
       case "list":
         return (
-          <LaunchesList onGoToDetailsClick={this.handleGoToDetailsClick} />
+          <LaunchesListContainer onGoToDetailsClick={this.handleGoToDetailsClick} />
         );
 
       case "details":
         return (
-          <LaunchDetails
+          <LaunchDetailsContainer
             flightnumber={flightNumber}
             rocket={rocket}
             launchpad={launchpad}
