@@ -44,7 +44,7 @@
         
 .launch
     padding: 2em 5%
-    width: 40%
+    width: calc(40% - 1px)
     text-transform: uppercase
     color: $white
     @include basic
@@ -52,6 +52,7 @@
     border-right: 1px dashed $cool-gray
 
     &:nth-child(even)
+        width: 40%
         align-self: flex-end
         border-left: 1px dashed $cool-gray
         border-right: none
