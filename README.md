@@ -1,8 +1,8 @@
 # SpaceX Launches
 
-  React app which I created during the Frontend Level Up by Daftcode.
-  The application allows to view launches of SpaceX rockets.
-  
+React app which I created during the Frontend Level Up by Daftcode.
+The application allows to view launches of SpaceX rockets.
+
 ## Live
 
 https://damianziobro.github.io/spacex-launches/
@@ -21,7 +21,7 @@ npm install
 ## Development
 
 ```bash
-npm run start
+npm start
 ```
 
 ```bash
