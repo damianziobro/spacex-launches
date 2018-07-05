@@ -3,8 +3,7 @@ import React from "react";
 import "./FilterButtons.sass";
 
 function FilterButtons({ allLaunches, onFilterListClick }) {
-  // Falcon 10 is only for task 5, tesing 'not found'
-  let filters = ["All rockets", "Falcon 10"];
+  let filters = ["All rockets"];
 
   allLaunches.forEach(launch => {
     const rocketName = launch.rocket.rocket_name;
