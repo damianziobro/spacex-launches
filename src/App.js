@@ -33,7 +33,9 @@ class App extends Component {
     switch (activeView) {
       case "list":
         return (
-          <LaunchesListContainer onGoToDetailsClick={this.handleGoToDetailsClick} />
+          <LaunchesListContainer
+            onGoToDetailsClick={this.handleGoToDetailsClick}
+          />
         );
 
       case "details":

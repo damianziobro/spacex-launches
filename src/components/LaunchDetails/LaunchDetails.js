@@ -8,7 +8,14 @@ import logo from "../../assets/img/space_x_logo_bw_centered.png";
 
 import "./LaunchDetails.sass";
 
-function LaunchDetails({ launchData, rocketData, launchpadData, onGoToListClick, extractRocketData, extractLaunchpadData }) {
+function LaunchDetails({
+  launchData,
+  rocketData,
+  launchpadData,
+  onGoToListClick,
+  extractRocketData,
+  extractLaunchpadData,
+}) {
   return (
     <div className="launch-details">
       <header className="launch-details__header">
