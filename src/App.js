@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import LaunchDetailsContainer from "./containers/LaunchDetailsContainer";
 import LaunchesListContainer from "./containers/LaunchesListContainer";
-import Footer from "./components/Footer/Footer";
 
 import "./styles/theme.sass";
 
@@ -55,10 +54,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <main>{this.getActiveView()}</main>
-        <Footer />
-      </div>
+      <main>{this.getActiveView()}</main>
     );
   }
 }
