@@ -1,8 +1,9 @@
 import React from "react";
 import { format } from "date-fns";
 
-import LaunchDataSection from "../../components/LaunchDataSection/LaunchDataSection";
-import LaunchCountdown from "../../components/LaunchCountdown/LaunchCountdown";
+import LaunchDataSection from "../LaunchDataSection/LaunchDataSection";
+import LaunchCountdown from "../LaunchCountdown/LaunchCountdown";
+import Footer from "../Footer/Footer";
 
 import logo from "../../assets/img/space_x_logo_bw_centered.png";
 
@@ -95,6 +96,7 @@ function LaunchDetails({
           </ul>
         </section>
       </section>
+      <Footer />
     </div>
   );
 }
