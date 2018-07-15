@@ -39,27 +39,6 @@ class LaunchesListContainer extends Component {
     });
   };
 
-  componentDidMount() {
-    fetch(`${baseURL}/launches/all`)
-      .then(response => response.json())
-      .then(data =>
-        this.setState({
-          allLaunches: data,
-          isLoading: false,
-          isError: false,
-        })
-      )
-      .catch(error =>
-        this.setState({
-          isError: true,
-          isLoading: false,
-        })
-      );
-    this.setState({
-      isLoading: true,
-    });
-  }
-
   render() {
     const {
       allLaunches,
@@ -74,9 +53,9 @@ class LaunchesListContainer extends Component {
     if (isError) {
       return <div>error</div>;
     }
+
     return (
       <LaunchesList
-        allLaunches={allLaunches}
         filteredLaunches={filteredLaunches}
         isNotFound={isNotFound}
         isLoading={isLoading}

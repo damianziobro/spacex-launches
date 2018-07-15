@@ -11,7 +11,6 @@ import Loading from "../UI/Loading/Loading";
 import "./LaunchesList.sass";
 
 function LaunchesList({
-  allLaunches,
   filteredLaunches,
   isNotFound,
   isLoading,
@@ -26,7 +25,6 @@ function LaunchesList({
           <img className="launches-list__logo" src={logo} alt="SpaceX logo" />
           <p className="launches-list__text">Launches 2018</p>
           <FilterButtons
-            allLaunches={allLaunches}
             onFilterListClick={onFilterListBtnClick}
           />
         </div>
