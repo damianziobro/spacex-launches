@@ -6,7 +6,6 @@ import { baseURL } from "../utils.js";
 
 class LaunchesListContainer extends Component {
   state = {
-    allLaunches: null,
     filteredLaunches: null,
     isLoading: false,
     isError: false,
