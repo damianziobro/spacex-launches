@@ -3,7 +3,7 @@ import React from "react";
 import "./FilterButtons.sass";
 
 function FilterButtons({ allLaunches, onFilterListClick }) {
-  let filters = ["All rockets"];
+  let filters = ["All"];
 
   allLaunches.forEach(launch => {
     const rocketName = launch.rocket.rocket_name;

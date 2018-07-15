@@ -15,7 +15,7 @@ class LaunchesListContainer extends Component {
 
   handleFilterListClick = event => {
     const { id } = event.target;
-    const query = id === "allrockets" ? "all" : `?rocket_id=${id}`;
+    const query = id === "all" ? "all" : `?rocket_id=${id}`;
     fetch(`${baseURL}/launches/${query}`)
       .then(response => response.json())
       .then(data => {
