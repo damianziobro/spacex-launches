@@ -25,14 +25,10 @@ function LaunchesList({
         <div className="launches-list__top">
           <img className="launches-list__logo" src={logo} alt="SpaceX logo" />
           <p className="launches-list__text">Launches 2018</p>
-          {allLaunches ? (
-            <FilterButtons
-              allLaunches={allLaunches}
-              onFilterListClick={onFilterListBtnClick}
-            />
-          ) : (
-              <Loading />
-            )}
+          <FilterButtons
+            allLaunches={allLaunches}
+            onFilterListClick={onFilterListBtnClick}
+          />
         </div>
         <div>
           {isLoading ? <Loading /> : null}

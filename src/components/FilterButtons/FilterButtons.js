@@ -2,26 +2,20 @@ import React from "react";
 
 import "./FilterButtons.sass";
 
-function FilterButtons({ allLaunches, onFilterListClick }) {
-  let filters = ["All"];
+function FilterButtons({ onFilterListClick }) {
+  const filterButtonNames = ["All", "Falcon 1", "Falcon 9", "Falcon Heavy"];
 
-  allLaunches.forEach(launch => {
-    const rocketName = launch.rocket.rocket_name;
-    if (filters.indexOf(rocketName) == -1) {
-      filters.push(rocketName);
-    }
-  });
+  const filterButtons = filterButtonNames.map(filterButtonName => {
+    const filterButtonId = filterButtonName.replace(/\s/g, "").toLowerCase();
 
-  const filterButtons = filters.map(filter => {
-    const filterName = filter.replace(/\s/g, "").toLowerCase();
     return (
       <button
         className="filter-buttons__button"
-        key={filterName}
-        id={filterName}
+        key={filterButtonId}
+        id={filterButtonId}
         onClick={onFilterListClick}
       >
-        {filter}
+        {filterButtonName}
       </button>
     );
   });
