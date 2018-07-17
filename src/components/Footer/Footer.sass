@@ -6,16 +6,23 @@
     display: flex
     justify-content: space-between
     align-items: center
+    @media (max-width: 900px)
+        flex-direction: column
+        justify-content: center
 
     &__copyright
         color: $brownish_grey
         @include basic
         text-transform: uppercase
+        text-align: center
 
 .links
     display: flex
     justify-content: center
     align-items: center
+    @media (max-width: 900px)
+        flex-direction: column
+        justify-content: center
 
     &__heading
         padding: 0 .5em
@@ -23,6 +30,8 @@
         border-right: 1px solid $brownish_grey
         text-transform: uppercase
         @include basic
+        @media (max-width: 900px)
+            border-right: 0
 
     &__list
         padding: .5em
