@@ -25,6 +25,8 @@
         @include basic
         text-transform: uppercase
         border-left: 1px dashed $cool-gray
+        @media screen and (max-width: 900px)
+            width: calc(100% - 4em - 2px)
 
     &__label
         color: $cool-gray
@@ -32,3 +34,6 @@
     &__description
         color: $almost-black
         @include basic
+
+    &__data
+        display: inline-block
