@@ -39,7 +39,6 @@
         justify-content: center
         align-items: center
 
-
     &__li
         list-style-type: none
         padding: .5em
@@ -49,7 +48,9 @@
         color: $cool-gray
         text-decoration: none
         @include basic
-        
+        @media screen and (max-width: 600px)
+            font-size: 12px
+
     &__link
         
         &:hover
