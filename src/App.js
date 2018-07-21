@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Route, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import LaunchDetailsContainer from "./containers/LaunchDetailsContainer";
 import LaunchesListContainer from "./containers/LaunchesListContainer";
@@ -7,15 +9,14 @@ import "./styles/theme.sass";
 
 class App extends Component {
   state = {
-    activeView: "list",
     flightNumber: null,
     rocket: null,
     launchpad: null,
   };
 
   handleGoToDetailsClick = (event, flightnumber, rocket, launchpad) => {
+    this.props.history.push('/details');
     this.setState({
-      activeView: "details",
       flightNumber: flightnumber,
       rocket,
       launchpad,
@@ -23,40 +24,29 @@ class App extends Component {
   };
 
   handleGoToListClick = () => {
-    this.setState({ activeView: "list" });
-  };
-
-  getActiveView = () => {
-    const { activeView, flightNumber, rocket, launchpad } = this.state;
-
-    switch (activeView) {
-      case "list":
-        return (
-          <LaunchesListContainer
-            onGoToDetailsClick={this.handleGoToDetailsClick}
-          />
-        );
-
-      case "details":
-        return (
-          <LaunchDetailsContainer
-            flightnumber={flightNumber}
-            rocket={rocket}
-            launchpad={launchpad}
-            onGoToListClick={this.handleGoToListClick}
-          />
-        );
-
-      default:
-        return null;
-    }
+    this.props.history.push('/');
   };
 
   render() {
+    const { flightNumber, rocket, launchpad } = this.state;
     return (
-      <main>{this.getActiveView()}</main>
+      <main>
+        <Switch>
+          <Route exact path='/' component={() =>
+            <LaunchesListContainer
+              onGoToDetailsClick={this.handleGoToDetailsClick}
+            />} />
+          <Route path='/details' component={() =>
+            <LaunchDetailsContainer
+              flightnumber={flightNumber}
+              rocket={rocket}
+              launchpad={launchpad}
+              onGoToListClick={this.handleGoToListClick}
+            />} />
+        </Switch>
+      </main>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
