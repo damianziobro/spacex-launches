@@ -1,53 +1,24 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+
+import { loadLaunchesList } from '../store/actions';
 
 import LaunchesList from "../components/LaunchesList/LaunchesList";
 
-import { baseURL } from "../utils.js";
-
 class LaunchesListContainer extends Component {
-  state = {
-    filteredLaunches: null,
-    isLoading: false,
-    isError: false,
-    isNotFound: false,
-  };
 
-  handleFilterListClick = event => {
-    const { id } = event.target;
-    const query = id === "all" ? "all" : `?rocket_id=${id}`;
-    fetch(`${baseURL}/launches/${query}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          filteredLaunches: data,
-          isLoading: false,
-          isError: false,
-          isNotFound: data.length == 0 ? true : false,
-        });
-      })
-      .catch(error =>
-        this.setState({
-          isError: true,
-          isLoading: false,
-        })
-      );
-    this.setState({
-      isLoading: true,
-      isNotFound: false,
-      filteredLaunches: null,
-    });
+  handleFilterListClick = ({ target: { id } }) => {
+    this.props.onLoadLaunchesList(id);
   };
 
   render() {
     const {
-      allLaunches,
-      filteredLaunches,
+      launchesList,
       isNotFound,
       isLoading,
       isError,
-    } = this.state;
-
-    const { onGoToDetailsClick } = this.props;
+      onGoToDetailsClick
+    } = this.props;
 
     if (isError) {
       return <div>error</div>;
@@ -55,15 +26,26 @@ class LaunchesListContainer extends Component {
 
     return (
       <LaunchesList
-        filteredLaunches={filteredLaunches}
+        launchesList={launchesList}
         isNotFound={isNotFound}
         isLoading={isLoading}
         isError={isError}
         onFilterListBtnClick={this.handleFilterListClick}
-        onGoToDetailsClick={this.props.onGoToDetailsClick}
+        onGoToDetailsClick={onGoToDetailsClick}
       />
     );
   }
 }
+const mapStateToProps = ({ launchesList: { launchesList, isError, isLoading, isNotFound } }) => ({
+  launchesList,
+  isError,
+  isLoading,
+  isNotFound
+});
 
-export default LaunchesListContainer;
+const mapDispatchToProps = dispatch => ({
+  onLoadLaunchesList: (id) => dispatch(loadLaunchesList(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LaunchesListContainer);
+
