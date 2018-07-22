@@ -1,18 +1,12 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+
+import { loadLaunchDetails } from '../store/actions';
 
 import Loading from "../components/UI/Loading/Loading";
 import LaunchDetails from "../components/LaunchDetails/LaunchDetails";
 
-import { baseURL } from "../utils.js";
-
 class LaunchDetailsContainer extends Component {
-  state = {
-    launchData: null,
-    rocketData: null,
-    launchpadData: null,
-    loading: false,
-    error: false,
-  };
 
   extractRocketData = rocket => {
     return [
@@ -42,39 +36,12 @@ class LaunchDetailsContainer extends Component {
   };
 
   componentDidMount() {
-    const { flightnumber, rocket, launchpad } = this.props;
-
-    Promise.all([
-      fetch(`${baseURL}/launches/all?flight_number=${flightnumber}`),
-      fetch(`${baseURL}/rockets/${rocket}`),
-      fetch(`${baseURL}/launchpads/${launchpad}`),
-    ])
-      .then(responses =>
-        Promise.all(responses.map(response => response.json()))
-      )
-      .then(data => {
-        this.setState({
-          launchData: data[0],
-          rocketData: data[1],
-          launchpadData: data[2],
-          loading: false,
-          error: false,
-        });
-      })
-      .catch(error =>
-        this.setState({
-          error: true,
-          loading: false,
-        })
-      );
-    this.setState({
-      loading: true,
-    });
+    const { flightnumber, rocket, launchpad, onLoadLaunchDetails } = this.props;
+    onLoadLaunchDetails(flightnumber, rocket, launchpad);
   }
 
   render() {
-    const { launchData, rocketData, launchpadData } = this.state;
-    const { onGoToListClick } = this.props;
+    const { launchData, rocketData, launchpadData, onGoToListClick, isError, isLoading } = this.props;
 
     if (launchData && rocketData && launchpadData) {
       return (
@@ -92,4 +59,16 @@ class LaunchDetailsContainer extends Component {
   }
 }
 
-export default LaunchDetailsContainer;
+const mapStateToProps = ({ launchDetails: { launchData, rocketData, launchpadData, isError, isLoading } }) => ({
+  launchData,
+  rocketData,
+  launchpadData,
+  isError,
+  isLoading
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLoadLaunchDetails: (flightnumber, rocket, launchpad) => dispatch(loadLaunchDetails(flightnumber, rocket, launchpad)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LaunchDetailsContainer);
