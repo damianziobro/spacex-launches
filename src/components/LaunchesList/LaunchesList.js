@@ -11,7 +11,7 @@ import Loading from "../UI/Loading/Loading";
 import "./LaunchesList.sass";
 
 function LaunchesList({
-  filteredLaunches,
+  launchesList,
   isNotFound,
   isLoading,
   isError,
@@ -37,8 +37,8 @@ function LaunchesList({
                 <span className="launches-list__error">
                   Sorry, no launches found
             </span>
-              ) : filteredLaunches ? (
-                filteredLaunches.map(launch => {
+              ) : launchesList ? (
+                launchesList.map(launch => {
                   return (
                     <div
                       className="launch"
