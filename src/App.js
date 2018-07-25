@@ -45,7 +45,6 @@ class App extends Component {
   }
 }
 
-
 const mapStateToProps = ({ app: { flightNumber, rocketName, launchpadName } }) => ({
   flightNumber,
   rocketName,

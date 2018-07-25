@@ -36,8 +36,8 @@ class LaunchDetailsContainer extends Component {
   };
 
   componentDidMount() {
-    const { flightnumber, rocket, launchpad, onLoadLaunchDetails } = this.props;
-    onLoadLaunchDetails(flightnumber, rocket, launchpad);
+    const { flightNumber, rocketName, launchpadName, onLoadLaunchDetails } = this.props;
+    onLoadLaunchDetails(flightNumber, rocketName, launchpadName);
   }
 
   render() {
@@ -59,12 +59,15 @@ class LaunchDetailsContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ launchDetails: { launchData, rocketData, launchpadData, isError, isLoading } }) => ({
+const mapStateToProps = ({ launchDetails: { launchData, rocketData, launchpadData, isError, isLoading }, app: { flightNumber, rocketName, launchpadName } }) => ({
   launchData,
   rocketData,
   launchpadData,
   isError,
-  isLoading
+  isLoading,
+  flightNumber,
+  rocketName,
+  launchpadName
 });
 
 const mapDispatchToProps = dispatch => ({
