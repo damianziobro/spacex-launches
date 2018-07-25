@@ -16,6 +16,9 @@ const initialState = {
 
 const loadLaunchDetailsStart = state =>
     updateObject(state, {
+        launchData: null,
+        rocketData: null,
+        launchpadData: null,
         isError: false,
         isLoading: true,
     });
