@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { storeLaunchQueryData } from './store/actions';
 
 import LaunchDetailsContainer from "./containers/LaunchDetailsContainer";
 import LaunchesListContainer from "./containers/LaunchesListContainer";
@@ -8,19 +11,12 @@ import LaunchesListContainer from "./containers/LaunchesListContainer";
 import "./styles/theme.sass";
 
 class App extends Component {
-  state = {
-    flightNumber: null,
-    rocket: null,
-    launchpad: null,
-  };
 
   handleGoToDetailsClick = (event, flightnumber, rocket, launchpad) => {
-    this.props.history.push('/details');
-    this.setState({
-      flightNumber: flightnumber,
-      rocket,
-      launchpad,
-    });
+    const { history, onStoreLaunchQueryData } = this.props;
+
+    history.push('/details');
+    onStoreLaunchQueryData(flightnumber, rocket, launchpad);
   };
 
   handleGoToListClick = () => {
@@ -28,7 +24,7 @@ class App extends Component {
   };
 
   render() {
-    const { flightNumber, rocket, launchpad } = this.state;
+    const { flightNumber, rocketName, launchpadName } = this.props;
     return (
       <main>
         <Switch>
@@ -39,8 +35,8 @@ class App extends Component {
           <Route path='/details' component={() =>
             <LaunchDetailsContainer
               flightnumber={flightNumber}
-              rocket={rocket}
-              launchpad={launchpad}
+              rocket={rocketName}
+              launchpad={launchpadName}
               onGoToListClick={this.handleGoToListClick}
             />} />
         </Switch>
@@ -49,4 +45,16 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+
+const mapStateToProps = ({ app: { flightNumber, rocketName, launchpadName } }) => ({
+  flightNumber,
+  rocketName,
+  launchpadName
+});
+
+const mapDispatchToProps = dispatch => ({
+  onStoreLaunchQueryData: (flightnumber, rocket, launchpad) => dispatch(storeLaunchQueryData(flightnumber, rocket, launchpad)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+

@@ -5,3 +5,7 @@ export {
 export {
     loadLaunchesList
 } from './launchesList';
+
+export {
+    storeLaunchQueryData
+} from './app';
