@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./LaunchDataSection.sass";
+import "./LaunchDataSection.css";
 
 function LaunchDataSection({ heading, items, description }) {
   return (

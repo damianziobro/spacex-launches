@@ -1,0 +1,92 @@
+.launches-list {
+  background-color: #0f1112;
+  min-height: 100vh; }
+  .launches-list__wrapper {
+    max-width: 1200px;
+    margin: 0 auto; }
+  .launches-list__top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 50vh;
+    background: url("../../assets/img/moon.png") no-repeat;
+    background-size: 80%;
+    background-position: top center; }
+  .launches-list__text {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 2.4em;
+    letter-spacing: .8em;
+    color: #a7a9ac; }
+    @media (max-width: 480px) {
+      .launches-list__text {
+        font-size: 16px; } }
+  .launches-list__logo {
+    width: 50%; }
+  .launches-list__launches {
+    padding: 5em 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column; }
+  .launches-list__error {
+    padding: 1em;
+    font-weight: 400;
+    font-size: 1.4em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-align: center; }
+
+.launch {
+  padding: 2em 2%;
+  width: calc(46% - 1px);
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1.4em;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  border-right: 1px dashed #a7a9ac; }
+  @media (max-width: 900px) {
+    .launch {
+      width: 90%;
+      border-right: none;
+      margin: 0 auto; } }
+  .launch:nth-child(even) {
+    width: 46%;
+    align-self: flex-end;
+    border-left: 1px dashed #a7a9ac;
+    border-right: none; }
+    @media (max-width: 900px) {
+      .launch:nth-child(even) {
+        width: 90%;
+        border-left: none;
+        align-self: flex-start; } }
+  .launch__date {
+    letter-spacing: .8em; }
+  .launch__list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row; }
+  .launch__arrow {
+    margin: 1em 0;
+    height: 3px;
+    width: 100%;
+    background-color: #ccac5b;
+    position: relative; }
+  .launch__arrow-icon {
+    width: 10px;
+    transform: rotate(180deg);
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    z-index: 2; }
+  .launch__list-item {
+    display: flex;
+    padding-right: 1em; }
+  .launch__name {
+    color: #a7a9ac;
+    padding-right: .5em; }

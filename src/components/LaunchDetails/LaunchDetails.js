@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 
 import logo from "../../assets/img/space_x_logo_bw_centered.png";
 
-import "./LaunchDetails.sass";
+import "./LaunchDetails.css";
 
 function LaunchDetails({
   launchData,

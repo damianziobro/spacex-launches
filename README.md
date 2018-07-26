@@ -27,21 +27,3 @@ npm start
 ```bash
 http://localhost:3000
 ```
-
-## Production
-
-```bash
-npm build
-```
-
-```bash
-npm serve
-```
-
-```bash
-http://localhost:5000
-```
-
-## Boilerplate
-
-The application is based on boilerplate https://github.com/mkaczkowski/daftcode-react-starter created by Mariusz Kaczkowski from [DaftCode](http://daftcode.pl)

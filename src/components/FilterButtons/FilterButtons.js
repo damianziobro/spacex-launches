@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./FilterButtons.sass";
+import "./FilterButtons.css";
 
 function FilterButtons({ onFilterListClick }) {
   const filterButtonNames = ["All", "Falcon 1", "Falcon 9", "Falcon Heavy"];

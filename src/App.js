@@ -8,7 +8,7 @@ import { storeLaunchQueryData } from './store/actions';
 import LaunchDetailsContainer from "./containers/LaunchDetailsContainer";
 import LaunchesListContainer from "./containers/LaunchesListContainer";
 
-import "./styles/theme.sass";
+import "./styles/theme.css";
 
 class App extends Component {
 

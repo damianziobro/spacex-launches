@@ -1,0 +1,33 @@
+.filter-buttons {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  @media (max-width: 480px) {
+    .filter-buttons {
+      flex-direction: column; } }
+  .filter-buttons__button {
+    padding: .5em 2em;
+    margin: 1em;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 100px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 1.4em;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    opacity: .7; }
+    @media (max-width: 700px) {
+      .filter-buttons__button {
+        padding: .5em 1em;
+        margin: .5em;
+        font-size: 1.2em; } }
+    @media (max-width: 480px) {
+      .filter-buttons__button {
+        width: 140px; } }
+    .filter-buttons__button:focus {
+      box-shadow: 0px 0px 5px 1px #ffffff;
+      outline: none;
+      opacity: 1; }

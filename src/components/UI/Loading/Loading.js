@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Loading.sass";
+import "./Loading.css";
 
 function Loading() {
   return <div className="loading">Loading</div>;

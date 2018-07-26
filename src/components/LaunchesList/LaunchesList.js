@@ -8,7 +8,7 @@ import arrow from "../../assets/img/arrow_pointer.png";
 import FilterButtons from "../FilterButtons/FilterButtons";
 import Loading from "../UI/Loading/Loading";
 
-import "./LaunchesList.sass";
+import "./LaunchesList.css";
 
 function LaunchesList({
   launchesList,
