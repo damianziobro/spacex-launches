@@ -21,7 +21,6 @@ class LaunchCountdown extends Component {
 
   componentDidMount() {
     const milisecondsToStart = this.props.time - new Date();
-    const { counter } = this.state;
     if (milisecondsToStart > 0) {
       this.setState({ counter: milisecondsToStart });
       this.counterStart();

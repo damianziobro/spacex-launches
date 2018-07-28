@@ -41,7 +41,7 @@ class LaunchDetailsContainer extends Component {
   }
 
   render() {
-    const { launchData, rocketData, launchpadData, onGoToListClick, isError, isLoading } = this.props;
+    const { launchData, rocketData, launchpadData, onGoToListClick } = this.props;
 
     if (launchData && rocketData && launchpadData) {
       return (
