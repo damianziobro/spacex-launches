@@ -30,10 +30,21 @@
         width: 50%
 
     &__launches
-        padding: 5em 0
+        margin: 5em 0
         width: 100%
         display: flex
         flex-direction: column
+        position: relative
+
+        &::after
+            content: ""
+            position: absolute
+            z-index: 1
+            top: 0
+            bottom: 0
+            left: 50%
+            height: 100%
+            border: 1px dashed $cool-gray
             
     &__error
         padding: 1em
@@ -50,25 +61,21 @@
     @include basic
     cursor: pointer
     border: 0
-    border-right: 1px dashed $cool-gray
     background-color: transparent
     @media (max-width: 900px) 
         width: 90%
-        border-right: none
         margin: 0 auto
 
     &:nth-child(even)
         width: 46%
         align-self: flex-end
-        border-left: 1px dashed $cool-gray
-        border-right: none
         @media (max-width: 900px) 
             width: 90%
-            border-left: none
             align-self: flex-start
 
     &__date
         letter-spacing: .8em
+        text-align: right
 
     &__list
         padding: 0
