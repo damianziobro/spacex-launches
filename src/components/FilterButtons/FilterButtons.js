@@ -1,15 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import "./FilterButtons.css";
+import './FilterButtons.css';
 
 function FilterButtons({ onFilterListClick }) {
-  const filterButtonNames = ["All", "Falcon 1", "Falcon 9", "Falcon Heavy"];
+  const filterButtonNames = ['All', 'Falcon 1', 'Falcon 9', 'Falcon Heavy'];
 
-  const filterButtons = filterButtonNames.map(filterButtonName => {
-    const filterButtonId = filterButtonName.replace(/\s/g, "").toLowerCase();
+  const filterButtons = filterButtonNames.map((filterButtonName) => {
+    const filterButtonId = filterButtonName.replace(/\s/g, '').toLowerCase();
 
     return (
       <button
+        type="button"
         className="filter-buttons__button"
         key={filterButtonId}
         id={filterButtonId}
@@ -20,7 +21,11 @@ function FilterButtons({ onFilterListClick }) {
     );
   });
 
-  return <div className="filter-buttons">{filterButtons}</div>;
+  return (
+    <div className="filter-buttons">
+      {filterButtons}
+    </div>
+  );
 }
 
 export default FilterButtons;

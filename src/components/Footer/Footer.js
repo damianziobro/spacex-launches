@@ -1,12 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import "./Footer.css";
+import './Footer.css';
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="links">
-        <h2 className="links__heading">Follow SpaceX</h2>
+        <h2 className="links__heading">
+          Follow SpaceX
+        </h2>
         <ul className="links__list">
           <li className="links__li">
             <a className="links__link" href="www.twitter.com" target="_blank">

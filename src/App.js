@@ -1,17 +1,15 @@
-import React, { Component } from "react";
-import { Route, Switch } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { storeLaunchQueryData } from './store/actions';
 
-import LaunchDetailsContainer from "./containers/LaunchDetailsContainer";
-import LaunchesListContainer from "./containers/LaunchesListContainer";
+import LaunchDetailsContainer from './containers/LaunchDetailsContainer';
+import LaunchesListContainer from './containers/LaunchesListContainer';
 
-import "./styles/theme.css";
+import './styles/theme.css';
 
 class App extends Component {
-
   handleGoToDetailsClick = (event, flightnumber, rocket, launchpad) => {
     const { history, onStoreLaunchQueryData } = this.props;
 
@@ -20,7 +18,8 @@ class App extends Component {
   };
 
   handleGoToListClick = () => {
-    this.props.history.push('/');
+    const { history } = this.props;
+    history.push('/');
   };
 
   render() {
@@ -28,17 +27,26 @@ class App extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path='/' component={() =>
-            <LaunchesListContainer
-              onGoToDetailsClick={this.handleGoToDetailsClick}
-            />} />
-          <Route path='/details' component={() =>
-            <LaunchDetailsContainer
-              flightnumber={flightNumber}
-              rocket={rocketName}
-              launchpad={launchpadName}
-              onGoToListClick={this.handleGoToListClick}
-            />} />
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <LaunchesListContainer
+                onGoToDetailsClick={this.handleGoToDetailsClick}
+              />
+            )}
+          />
+          <Route
+            path="/details"
+            component={() => (
+              <LaunchDetailsContainer
+                flightnumber={flightNumber}
+                rocket={rocketName}
+                launchpad={launchpadName}
+                onGoToListClick={this.handleGoToListClick}
+              />
+            )}
+          />
         </Switch>
       </main>
     );
@@ -48,7 +56,7 @@ class App extends Component {
 const mapStateToProps = ({ app: { flightNumber, rocketName, launchpadName } }) => ({
   flightNumber,
   rocketName,
-  launchpadName
+  launchpadName,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -56,4 +64,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-

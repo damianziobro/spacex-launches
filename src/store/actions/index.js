@@ -1,11 +1,11 @@
 export {
-    loadLaunchDetails
+  loadLaunchDetails,
 } from './launchDetails';
 
 export {
-    loadLaunchesList
+  loadLaunchesList,
 } from './launchesList';
 
 export {
-    storeLaunchQueryData
+  storeLaunchQueryData,
 } from './app';

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { loadLaunchesList } from '../store/actions';
 
-import LaunchesList from "../components/LaunchesList/LaunchesList";
+import LaunchesList from '../components/LaunchesList/LaunchesList';
 
 class LaunchesListContainer extends Component {
-
   handleFilterListClick = ({ target: { id } }) => {
-    this.props.onLoadLaunchesList(id);
+    const { onLoadLaunchesList } = this.props;
+    onLoadLaunchesList(id);
   };
 
   render() {
@@ -17,11 +17,15 @@ class LaunchesListContainer extends Component {
       isNotFound,
       isLoading,
       isError,
-      onGoToDetailsClick
+      onGoToDetailsClick,
     } = this.props;
 
     if (isError) {
-      return <div>error</div>;
+      return (
+        <div>
+          error
+        </div>
+      );
     }
 
     return (
@@ -36,16 +40,19 @@ class LaunchesListContainer extends Component {
     );
   }
 }
-const mapStateToProps = ({ launchesList: { launchesList, isError, isLoading, isNotFound } }) => ({
+const mapStateToProps = ({
+  launchesList: {
+    launchesList, isError, isLoading, isNotFound,
+  },
+}) => ({
   launchesList,
   isError,
   isLoading,
-  isNotFound
+  isNotFound,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoadLaunchesList: (id) => dispatch(loadLaunchesList(id)),
+  onLoadLaunchesList: id => dispatch(loadLaunchesList(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LaunchesListContainer);
-

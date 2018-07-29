@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class LaunchCountdown extends Component {
   state = {
@@ -6,21 +6,9 @@ class LaunchCountdown extends Component {
     intervalId: null,
   };
 
-  counterStart = () => {
-    let intervalId = setInterval(
-      event => this.setState({ counter: this.state.counter - 1000 }),
-      1000
-    );
-    this.setState({ intervalId });
-  };
-
-  counterStop = () => {
-    const { counter, intervalId } = this.state;
-    if (counter <= 0) clearInterval(intervalId);
-  };
-
   componentDidMount() {
-    const milisecondsToStart = this.props.time - new Date();
+    const { time } = this.props;
+    const milisecondsToStart = time - new Date();
     if (milisecondsToStart > 0) {
       this.setState({ counter: milisecondsToStart });
       this.counterStart();
@@ -34,27 +22,40 @@ class LaunchCountdown extends Component {
     clearInterval(intervalId);
   }
 
+  counterStart = () => {
+    const { counter } = this.state;
+    const intervalId = setInterval(() => this.setState({ counter: counter - 1000 }), 1000);
+    this.setState({ intervalId });
+  };
+
+  counterStop = () => {
+    const { counter, intervalId } = this.state;
+    if (counter <= 0) clearInterval(intervalId);
+  };
+
   render() {
     const { counter } = this.state;
-    let ms = counter;
+    const ms = counter;
 
     let s = Math.floor(ms / 1000);
     let m = Math.floor(s / 60);
-    s = s % 60;
+    s %= 60;
     let h = Math.floor(m / 60);
-    m = m % 60;
-    let d = Math.floor(h / 24);
-    h = h % 24;
+    m %= 60;
+    const d = Math.floor(h / 24);
+    h %= 24;
 
-    let days = d;
-    let hours = h < 10 ? `0${h}` : h;
-    let minutes = m < 10 ? `0${m}` : m;
+    const days = d;
+    const hours = h < 10 ? `0${h}` : h;
+    const minutes = m < 10 ? `0${m}` : m;
 
     this.counterStop();
 
-    return counter ? (
-      <span> {`${days} days ${hours} hrs ${minutes} mins to start`}</span>
-    ) : null;
+    return (counter > 0 && (
+      <span>
+        {`${days} days ${hours} hrs ${minutes} mins to start`}
+      </span>
+    ));
   }
 }
 

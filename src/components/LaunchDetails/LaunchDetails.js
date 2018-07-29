@@ -1,13 +1,13 @@
-import React from "react";
-import { format } from "date-fns";
+import React from 'react';
+import { format } from 'date-fns';
 
-import LaunchDataSection from "../LaunchDataSection/LaunchDataSection";
-import LaunchCountdown from "../LaunchCountdown/LaunchCountdown";
-import Footer from "../Footer/Footer";
+import LaunchDataSection from '../LaunchDataSection/LaunchDataSection';
+import LaunchCountdown from '../LaunchCountdown/LaunchCountdown';
+import Footer from '../Footer/Footer';
 
-import logo from "../../assets/img/space_x_logo_bw_centered.png";
+import logo from '../../assets/img/space_x_logo_bw_centered.png';
 
-import "./LaunchDetails.css";
+import './LaunchDetails.css';
 
 function LaunchDetails({
   launchData,
@@ -21,6 +21,7 @@ function LaunchDetails({
     <div className="launch-details">
       <header className="launch-details__header">
         <button
+          type="button"
           className="launch-details__go-back-btn"
           onClick={onGoToListClick}
         >
@@ -32,7 +33,7 @@ function LaunchDetails({
         <div className="launch-details__columns">
           <div className="launch-details__first-column">
             <span className="launch-details__start-date">
-              {format(launchData[0].launch_date_local, "DD MMMM YYYY")}
+              {format(launchData[0].launch_date_local, 'DD MMMM YYYY')}
             </span>
             <h2 className="launch-details__rocket-name">
               {`${launchData[0].rocket.rocket_name} launch`}
@@ -64,13 +65,16 @@ function LaunchDetails({
           </div>
         </div>
         <section className="mission-links">
-          <h2 className="mission-links__heading">Mission links</h2>
+          <h2 className="mission-links__heading">
+            Mission links
+          </h2>
           <ul className="mission-links__list">
             <li className="mission-links__list-item">
               <a
                 className="mission-links__link"
                 href={launchData[0].links.reddit_campaign}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Reddit campaign
               </a>
@@ -80,6 +84,7 @@ function LaunchDetails({
                 className="mission-links__link"
                 href={launchData[0].links.presskit}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Presskit
               </a>
@@ -89,6 +94,7 @@ function LaunchDetails({
                 className="mission-links__link"
                 href={launchData[0].links.video_link}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Mission video
               </a>

@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
-import launchDetails from './launchDetails'
-import launchesList from './launchesList'
-import app from './app'
+import { combineReducers } from 'redux';
+import launchDetails from './launchDetails';
+import launchesList from './launchesList';
+import app from './app';
 
 export default combineReducers({
-    launchDetails,
-    launchesList,
-    app
-})
+  launchDetails,
+  launchesList,
+  app,
+});
