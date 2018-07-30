@@ -7,6 +7,7 @@ import arrow from '../../assets/img/arrow_pointer.png';
 
 import FilterButtons from '../FilterButtons/FilterButtons';
 import Loading from '../UI/Loading/Loading';
+import Error from '../UI/Error/Error';
 
 import './LaunchesList.css';
 
@@ -31,11 +32,7 @@ function LaunchesList({
           </div>
           <div>
             {(isLoading && <Loading />)}
-            {(isError && (
-              <div className="launches-list__error">
-                Error
-              </div>
-            ))}
+            {(isError && <Error />)}
             <div className="launches-list__launches">
               {(isNotFound && (
                 <span className="launches-list__error">
