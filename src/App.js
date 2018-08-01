@@ -10,6 +10,14 @@ import LaunchesListContainer from './containers/LaunchesListContainer';
 import './styles/theme.css';
 
 class App extends Component {
+  state = {
+    isUserTabbing: false,
+  }
+
+  handleTabKeyClick = (event) => {
+    this.setState({ isUserTabbing: event.key === 'Tab' });
+  }
+
   handleGoToDetailsClick = (event, flightnumber, rocket, launchpad) => {
     const { history, onStoreLaunchQueryData } = this.props;
 
@@ -24,8 +32,12 @@ class App extends Component {
 
   render() {
     const { flightNumber, rocketName, launchpadName } = this.props;
+    const { isUserTabbing } = this.state;
     return (
-      <main>
+      <main
+        className={isUserTabbing ? null : 'remove-focus'}
+        onKeyDown={this.handleTabKeyClick}
+      >
         <Switch>
           <Route
             exact
