@@ -8,4 +8,5 @@ export {
 
 export {
   storeLaunchQueryData,
+  userTabbing,
 } from './app';

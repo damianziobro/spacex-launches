@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { storeLaunchQueryData } from './store/actions';
+import { storeLaunchQueryData, userTabbing } from './store/actions';
 
 import LaunchDetailsContainer from './containers/LaunchDetailsContainer';
 import LaunchesListContainer from './containers/LaunchesListContainer';
@@ -10,12 +10,12 @@ import LaunchesListContainer from './containers/LaunchesListContainer';
 import './styles/theme.css';
 
 class App extends Component {
-  state = {
-    isUserTabbing: false,
-  }
+  handleTabKeyClick = ({ key }) => {
+    const { onUserTabbing } = this.props;
 
-  handleTabKeyClick = (event) => {
-    this.setState({ isUserTabbing: event.key === 'Tab' });
+    if (key === 'Tab') {
+      onUserTabbing();
+    }
   }
 
   handleGoToDetailsClick = (event, flightnumber, rocket, launchpad) => {
@@ -31,11 +31,15 @@ class App extends Component {
   };
 
   render() {
-    const { flightNumber, rocketName, launchpadName } = this.props;
-    const { isUserTabbing } = this.state;
+    const {
+      flightNumber,
+      rocketName,
+      launchpadName,
+      isUserTabbing,
+    } = this.props;
     return (
       <main
-        className={isUserTabbing ? null : 'remove-focus'}
+        className={isUserTabbing ? 'is-user-tabbing' : null}
         onKeyDown={this.handleTabKeyClick}
       >
         <Switch>
@@ -65,14 +69,23 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ app: { flightNumber, rocketName, launchpadName } }) => ({
+const mapStateToProps = ({
+  app: {
+    flightNumber,
+    rocketName,
+    launchpadName,
+    isUserTabbing,
+  },
+}) => ({
   flightNumber,
   rocketName,
   launchpadName,
+  isUserTabbing,
 });
 
 const mapDispatchToProps = dispatch => ({
   onStoreLaunchQueryData: (flightnumber, rocket, launchpad) => dispatch(storeLaunchQueryData(flightnumber, rocket, launchpad)),
+  onUserTabbing: () => dispatch(userTabbing()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
