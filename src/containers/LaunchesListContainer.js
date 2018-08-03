@@ -6,9 +6,14 @@ import { loadLaunchesList } from '../store/actions';
 import LaunchesList from '../components/LaunchesList/LaunchesList';
 
 class LaunchesListContainer extends Component {
+  state = {
+    currentlyActiveList: null,
+  };
+
   handleFilterListClick = ({ target: { id } }) => {
     const { onLoadLaunchesList } = this.props;
     onLoadLaunchesList(id);
+    this.setState({ currentlyActiveList: id });
   };
 
   render() {
