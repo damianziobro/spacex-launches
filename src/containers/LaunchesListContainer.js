@@ -40,13 +40,11 @@ class LaunchesListContainer extends Component {
 const mapStateToProps = ({
   launchesList: {
     launchesList,
-    isError,
     isLoading,
     isNotFound,
   },
 }) => ({
   launchesList,
-  isError,
   isLoading,
   isNotFound,
 });
