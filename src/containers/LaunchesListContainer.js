@@ -25,14 +25,6 @@ class LaunchesListContainer extends Component {
       onGoToDetailsClick,
     } = this.props;
 
-    if (isError) {
-      return (
-        <div>
-          error
-        </div>
-      );
-    }
-
     return (
       <LaunchesList
         launchesList={launchesList}
@@ -47,7 +39,10 @@ class LaunchesListContainer extends Component {
 }
 const mapStateToProps = ({
   launchesList: {
-    launchesList, isError, isLoading, isNotFound,
+    launchesList,
+    isError,
+    isLoading,
+    isNotFound,
   },
 }) => ({
   launchesList,
