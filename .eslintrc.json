@@ -7,7 +7,8 @@
         "no-underscore-dangle": ["error", {
             "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]
         }],
-        "jsx-a11y/no-noninteractive-element-interactions": 0
+        "jsx-a11y/no-noninteractive-element-interactions": 0,
+        "react/no-unused-state": 0
     },
     "parser": "babel-eslint",
     "env": {
