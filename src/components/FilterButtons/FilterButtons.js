@@ -16,6 +16,7 @@ function FilterButtons({ onFilterListClick }) {
         id={filterButtonId}
         onClick={onFilterListClick}
       >
+        test
         {filterButtonName}
       </button>
     );
